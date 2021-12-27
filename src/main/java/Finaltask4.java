@@ -2,24 +2,48 @@ import java.util.Scanner;
 
 public class Finaltask4 {
     public static void main(String[] args) {
-        System.out.println("Сидит дед, во сто шуб одет, кто его раздевает, тот слезы проливает, что же это?");
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Сидит дед, во сто шуб одет, кто его раздевает, тот слезы проливает. Что это?");
         String answer = "Заархивированный вирус";
-        for (int i = 0; i < 3; i++) {
-            Scanner scan = new Scanner(System.in);
+
+        int count = 0;
+
+        while (count < 3) {
             String input = scan.nextLine();
-            if (input.equals(answer)) {
-                System.out.println("Правильно!");
+            switch (input) {
+                case "Подсказка": {
+                    if (count != 0) {
+                        System.out.println("Подсказка уже недоступна");
+                    }
+                    if (count == 0) {
+                        System.out.println("Вместе с ЭТИМ школьники обычно скачивают читы");
+                        input = scan.nextLine();
+                        if (answer.equals(input)) {
+                            System.out.println("Правильно!");
+                            return;
+                        } else {
+                            System.out.println("Обидно, приходи в другой раз");
+                            return;
+                        }
+                    }
+                }
                 break;
-            } else if (i == 0 && (input.equals("Подсказка"))) {
-                System.out.println("Обычно вместе с ЭТИМ школьники скачивают бесплатные читы");
-                i++;
-            } else if ((i == 1 || i == 2) && (input.equals("Подсказка"))) {
-                System.out.println("Подсказка уже недоступна!");
-            } else if (i == 0 || i == 1) {
-                System.out.println("Подумай еще!");
-            } else {
-                System.out.println("Обидно, приходи в другой раз.");
+                case "Заархивированный вирус": {
+                    System.out.println("Правильно!");
+                    return;
+                }
+                default: {
+                    if (count == 2) {
+                        System.out.println("Обидно, приходи в другой раз");
+                        return;
+                    }
+                    System.out.println("Подумай еще!");
+                    count++;
+                }
+
             }
         }
+
+
     }
 }
